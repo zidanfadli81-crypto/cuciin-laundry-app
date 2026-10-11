@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cuciin</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <div id="customer-app" class="app-panel active">
+        <div class="phone-frame">
+          <header class="topbar">
+            <div class="brand-wrap">
+              <div class="brand-mark">C</div>
+              <div>
+                <div class="brand-name">Cuciin</div>
+                <div class="brand-sub">Smart Laundry</div>
+              </div>
+            </div>
+            <button class="icon-btn">🔔 <span class="notif-dot">2</span></button>
+          </header>
+
+          <main class="screen active" id="home-screen">
+            <div class="content-wrap">
+              <section class="welcome-card">
+                <div>
+                  <p class="muted">Selamat pagi</p>
+                  <h1>Halo, Zidan!</h1>
+                </div>
+                <div class="avatar">Z</div>
+              </section>
+
+              <section class="location-card">
+                <div class="mini-label">Lokasi Layanan</div>
+                <div class="location-name">Gerai Kukusan UI</div>
+                <div class="location-address">Jl. Kukusan 2A RT 08/02, Depok</div>
+                <button class="text-link">Ganti lokasi →</button>
+              </section>
+
+              <section class="section-block">
+                <div class="section-head">
+                  <h3>Pesanan Aktif</h3>
+                </div>
+
+                <div id="empty-state" class="empty-state">
+                  <div class="empty-icon">🧺</div>
+                  <h4>Belum Ada Pesanan</h4>
+                  <p>Mulai dari cuci hari ini dengan layanan yang nyaman dan cepat.</p>
+                  <button id="new-order-btn" class="primary-btn full-width">Pesan Laundry Baru</button>
+                </div>
+
+                <div id="active-order-card" class="active-order-card hidden">
+                  <div class="order-row">
+                    <span>Order ID</span>
+                    <strong id="active-order-id">CUC-1042</strong>
+                  </div>
+                  <div class="order-row">
+                    <span>Status</span>
+                    <span class="tag success" id="active-order-status">Dipesan</span>
+                  </div>
+                  <div class="order-row">
+                    <span>Berat</span>
+                    <strong id="active-order-weight">3.45 kg</strong>
+                  </div>
+                  <div class="order-row">
+                    <span>Total</span>
+                    <strong id="active-order-total">Rp 24.150</strong>
+                  </div>
+                  <button id="home-track-btn" class="secondary-btn full-width">Lacak Pesanan</button>
+                </div>
+              </section>
+
+              <section class="section-block">
+                <div class="section-head">
+                  <h3>Layanan Tersedia</h3>
+                </div>
+                <div class="service-grid">
+                  <div class="service-item">
+                    <div class="service-icon">⚡</div>
+                    <div class="service-name">Cuci Reguler</div>
+                    <div class="service-price">Rp 7.000/kg</div>
+                  </div>
+                  <div class="service-item">
+                    <div class="service-icon">🚀</div>
+                    <div class="service-name">Cuci Express</div>
+                    <div class="service-price">Rp 12.000/kg</div>
+                  </div>
+                  <div class="service-item">
+                    <div class="service-icon">✨</div>
+                    <div class="service-name">Premium Care</div>
+                    <div class="service-price">Rp 15.000/kg</div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="loyalty-card">
+                <div class="loyalty-top">
+                  <span class="promo-badge">⭐ Gold Member</span>
+                  <span class="points">450 pts</span>
+                </div>
+                <div class="progress">
+                  <div class="progress-fill" style="width: 72%"></div>
+                </div>
+                <small>450/625 poin untuk level berikutnya</small>
+              </section>
+            </div>
+          </main>
+
+          <main class="screen" id="checkout-screen">
+            <div class="top-screen-row">
+              <button class="back-btn" data-back="home">←</button>
+              <h2>Pesan Layanan</h2>
+              <span></span>
+            </div>
+
+            <div class="content-wrap">
+              <section class="section-block">
+                <div class="section-head">
+                  <h3>Pilih Layanan</h3>
+                </div>
+
+                <div class="service-options">
+                  <button class="service-option selected" data-service="regular" data-price="7000">
+                    <div class="opt-line">
+                      <span class="service-title">Cuci Reguler</span>
+                      <span class="service-pricing">Rp 7.000/kg</span>
+                    </div>
+                    <small>60-90 menit</small>
+                    <span class="check-mark">✓</span>
+                  </button>
+
+                  <button class="service-option" data-service="express" data-price="12000">
+                    <div class="opt-line">
+                      <span class="service-title">Cuci Express</span>
+                      <span class="service-pricing">Rp 12.000/kg</span>
+                    </div>
+                    <small>1-2 jam</small>
+                    <span class="check-mark">✓</span>
+                  </button>
+
+                  <button class="service-option" data-service="premium" data-price="15000">
+                    <div class="opt-line">
+                      <span class="service-title">Premium Care</span>
+                      <span class="service-pricing">Rp 15.000/kg</span>
+                    </div>
+                    <small>Perawatan ekstra</small>
+                    <span class="check-mark">✓</span>
+                  </button>
+                </div>
+              </section>
+
+              <section class="section-block">
+                <div class="section-head">
+                  <h3>Estimasi Berat</h3>
+                </div>
+                <div class="weight-box">
+                  <button class="stepper" data-step="-0.5">−</button>
+                  <div class="weight-value"><span id="weight-number">3.5</span><small>kg</small></div>
+                  <button class="stepper" data-step="0.5">＋</button>
+                </div>
+              </section>
+
+              <section class="section-block">
+                <div class="section-head">
+                  <h3>Preferensi</h3>
+                </div>
+
+                <label class="field-block">
+                  <span>Aroma Pewangi</span>
+                  <select id="scent-select">
+                    <option value="Lavender">Lavender</option>
+                    <option value="Fresh">Fresh</option>
+                    <option value="Rose">Rose</option>
+                    <option value="Neutral">Neutral</option>
+                  </select>
+                </label>
+
+                <label class="field-block">
+                  <span>Catatan</span>
+                  <textarea id="order-note" rows="3" placeholder="Contoh: warna pakaian cerah, pengharum ringan"></textarea>
+                </label>
+              </section>
+            </div>
+
+            <div class="bottom-checkout">
+              <div class="check-total">
+                <span>Total</span>
+                <strong id="checkout-total">Rp 24.500</strong>
+              </div>
+              <button id="pay-now-btn" class="primary-btn">Lanjutkan Pembayaran QRIS</button>
+            </div>
+          </main>
+
+          <main class="screen" id="payment-screen">
+            <div class="top-screen-row">
+              <button class="back-btn" data-back="checkout">←</button>
+              <h2>Pembayaran QRIS</h2>
+              <span></span>
+            </div>
+
+            <div class="content-wrap payment-wrap">
+              <div class="payment-card">
+                <div class="payment-head">
+                  <div>
+                    <small>Order ID</small>
+                    <strong id="qris-order-id">CUC-1042</strong>
+                  </div>
+                  <div class="timer">09:58</div>
+                </div>
+                <div class="qr-box">
+                  <div class="qr-code">
+                    <div class="qr-inner"></div>
+                  </div>
+                </div>
+                <div class="payment-meta">
+                  <span>Total</span>
+                  <strong id="qris-total">Rp 24.500</strong>
+                </div>
+                <button id="simulate-payment-btn" class="primary-btn full-width">Simulasi Bayar QRIS Berhasil</button>
+              </div>
+            </div>
+          </main>
+
+          <main class="screen" id="success-screen">
+            <div class="success-wrap">
+              <div class="success-icon">✓</div>
+              <h2>Pembayaran Berhasil</h2>
+              <p>Pesanan Anda telah dikonfirmasi.</p>
+
+              <div class="receipt-box">
+                <div class="receipt-row">
+                  <span>Order ID</span>
+                  <strong id="success-order-id">CUC-1042</strong>
+                </div>
+                <div class="receipt-row">
+                  <span>Berat</span>
+                  <strong id="success-weight">3.5 kg</strong>
+                </div>
+                <div class="receipt-row">
+                  <span>Total</span>
+                  <strong id="success-total">Rp 24.500</strong>
+                </div>
+              </div>
+
+              <div class="success-actions">
+                <button id="track-order-btn" class="primary-btn full-width">Lacak Status Pesanan</button>
+                <button id="home-return-btn" class="secondary-btn full-width">Beranda</button>
+              </div>
+            </div>
+          </main>
+
+          <main class="screen" id="tracking-screen">
+            <div class="top-screen-row">
+              <button class="back-btn" data-back="home">←</button>
+              <h2>Tracking</h2>
+              <span></span>
+            </div>
+
+            <div class="content-wrap">
+              <div class="tracking-header card-mini">
+                <div>
+                  <small>Order</small>
+                  <strong id="tracking-order-id">CUC-1042</strong>
+                </div>
+                <span id="tracking-status" class="tag info">Washing</span>
+              </div>
+
+              <div class="timeline-box card-mini">
+                <div class="progress-track">
+                  <div id="progress-fill" class="progress-fill-track"></div>
+                </div>
+
+                <div id="timeline-steps" class="timeline-steps"></div>
+              </div>
+
+              <div class="detail-box card-mini">
+                <div class="detail-row">
+                  <span>Berat</span>
+                  <strong id="tracking-weight">3.45 kg</strong>
+                </div>
+                <div class="detail-row">
+                  <span>Lokasi</span>
+                  <strong>Gerai Kukusan UI</strong>
+                </div>
+                <div class="detail-row">
+                  <span>Kontak Outlet</span>
+                  <strong>+62 812-3456-7890</strong>
+                </div>
+              </div>
+            </div>
+          </main>
+
+          <main class="screen" id="account-screen">
+            <div class="top-screen-row">
+              <button class="back-btn" data-back="home">←</button>
+              <h2>Akun</h2>
+              <span></span>
+            </div>
+
+            <div class="content-wrap">
+              <div class="profile-card card-mini">
+                <div class="profile-row">
+                  <div class="profile-avatar">Z</div>
+                  <div>
+                    <h3>Zidan Fadli</h3>
+                    <span class="tag gold">Gold Tier</span>
+                  </div>
+                </div>
+                <div class="points-box">
+                  <span>Total Poin</span>
+                  <strong>450 Pts</strong>
+                </div>
+              </div>
+
+              <div class="list-card card-mini">
+                <div class="list-title">Alamat</div>
+                <ul>
+                  <li>Jl. Margonda Raya No. 14, Depok</li>
+                  <li>Jl. Kukusan 2A RT 08/02</li>
+                </ul>
+              </div>
+
+              <div class="list-card card-mini">
+                <div class="list-title">Preferensi Aroma</div>
+                <div class="chips">
+                  <span class="chip">Lavender</span>
+                  <span class="chip">Fresh</span>
+                  <span class="chip">Rose</span>
+                </div>
+              </div>
+
+              <div class="list-card card-mini">
+                <div class="toggle-row">
+                  <span>Notifikasi WhatsApp</span>
+                  <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+              </div>
+            </div>
+          </main>
+
+          <main class="screen" id="history-screen">
+            <div class="top-screen-row">
+              <button class="back-btn" data-back="home">←</button>
+              <h2>Riwayat & Analitik</h2>
+              <span></span>
+            </div>
+
+            <div class="content-wrap">
+              <div class="analytics-card card-mini">
+                <div class="analytics-top">
+                  <span>Bulan ini</span>
+                  <strong>Rp 142.500</strong>
+                </div>
+                <div class="analytics-grid">
+                  <div>
+                    <small>Total kg</small>
+                    <strong>28.5 kg</strong>
+                  </div>
+                  <div>
+                    <small>Pesanan</small>
+                    <strong>12</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="all">Semua</button>
+                <button class="filter-tab" data-filter="done">Selesai</button>
+                <button class="filter-tab" data-filter="cancelled">Dibatalkan</button>
+              </div>
+
+              <div class="history-list">
+                <div class="history-item card-mini">
+                  <div class="history-head">
+                    <span>#CUC-1042</span>
+                    <span class="tag success">Selesai</span>
+                  </div>
+                  <div class="history-body">
+                    <div><small>Jenis</small><strong>Cuci Reguler</strong></div>
+                    <div><small>Berat</small><strong>3.45 kg</strong></div>
+                    <div><small>Total</small><strong>Rp 24.150</strong></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </main>
+
+          <nav class="bottom-nav">
+            <button class="nav-btn active" data-target="home">🏠<span>Beranda</span></button>
+            <button class="nav-btn" data-target="tracking">📍<span>Tracking</span></button>
+            <button class="nav-btn" data-target="history">🧾<span>Riwayat</span></button>
+            <button class="nav-btn" data-target="account">👤<span>Akun</span></button>
+          </nav>
+        </div>
+      </div>
+
+      <div id="admin-app" class="app-panel">
+        <div class="admin-frame">
+          <header class="admin-header">
+            <div>
+              <small class="muted">Admin Panel</small>
+              <h2>Cuciin POS</h2>
+            </div>
+            <button id="customer-view-btn" class="secondary-btn small-btn">Customer App</button>
+          </header>
+
+          <main class="admin-screen active" id="admin-home">
+            <div class="admin-cards">
+              <div class="admin-card big-card">
+                <small>Hari ini</small>
+                <strong>Rp 845.000</strong>
+              </div>
+              <div class="admin-card big-card">
+                <small>Minggu</small>
+                <strong>Rp 4.620.000</strong>
+              </div>
+              <div class="admin-card">
+                <small>Total Masuk</small>
+                <strong>42</strong>
+              </div>
+              <div class="admin-card">
+                <small>Sedang Dicuci</small>
+                <strong>11</strong>
+              </div>
+              <div class="admin-card">
+                <small>Siap Diambil</small>
+                <strong>09</strong>
+              </div>
+              <div class="admin-card">
+                <small>Dijemput</small>
+                <strong>18</strong>
+              </div>
+            </div>
+
+            <div class="admin-card chart-card">
+              <h3>7 Hari Terakhir</h3>
+              <div class="bar-chart">
+                <div class="bar" style="height: 30%"><span>560k</span></div>
+                <div class="bar" style="height: 40%"><span>760k</span></div>
+                <div class="bar" style="height: 60%"><span>830k</span></div>
+                <div class="bar active" style="height: 80%"><span>1.1M</span></div>
+                <div class="bar" style="height: 90%"><span>1.2M</span></div>
+                <div class="bar" style="height: 95%"><span>1.4M</span></div>
+                <div class="bar" style="height: 100%"><span>1.8M</span></div>
+              </div>
+            </div>
+          </main>
+
+          <main class="admin-screen" id="admin-weight">
+            <div class="admin-card weight-panel">
+              <div class="weight-panel-header">
+                <div>
+                  <small>Order</small>
+                  <strong>CUC-1042</strong>
+                </div>
+                <span class="tag success">Scalix v2.1 Connected</span>
+              </div>
+
+              <div class="scale-display">
+                <span id="admin-scale-weight">3.45</span>
+                <small>kg</small>
+              </div>
+
+              <div class="admin-actions">
+                <button class="secondary-btn">Connect BLE</button>
+                <button id="read-sensor-btn" class="primary-btn">Baca Ulang Sensor</button>
+              </div>
+            </div>
+
+            <div class="admin-card">
+              <h3>Input Manual</h3>
+              <div class="numpad">
+                <button>1</button><button>2</button><button>3</button>
+                <button>4</button><button>5</button><button>6</button>
+                <button>7</button><button>8</button><button>9</button>
+                <button class="wide">0</button><button class="wide">.</button>
+              </div>
+            </div>
+
+            <div class="admin-actions vertical">
+              <button id="lock-bill-btn" class="primary-btn full-width">Kunci Berat & Terbitkan Tagihan QRIS</button>
+              <button id="wa-brief-btn" class="secondary-btn full-width">Kirim Rincian Berat ke WhatsApp</button>
+            </div>
+          </main>
+
+          <main class="admin-screen" id="admin-orders">
+            <div class="admin-card">
+              <div class="admin-list-row">
+                <div><strong>CUC-1042</strong><small>Zidan • 3.45 kg</small></div>
+                <span class="tag info">Washing</span>
+              </div>
+              <div class="admin-list-row">
+                <div><strong>CUC-1041</strong><small>Rina • 2.4 kg</small></div>
+                <span class="tag success">Ready</span>
+              </div>
+              <div class="admin-list-row">
+                <div><strong>CUC-1040</strong><small>Budi • 5.2 kg</small></div>
+                <span class="tag warning">Drying</span>
+              </div>
+            </div>
+          </main>
+
+          <main class="admin-screen" id="admin-customers">
+            <div class="admin-card customer-card">
+              <div class="customer-head">
+                <div class="customer-avatar">Z</div>
+                <div>
+                  <strong>Zidan Fadli</strong>
+                  <small>Gold Tier</small>
+                </div>
+              </div>
+              <div class="customer-meta">
+                <span>Transaksi: 12</span>
+                <span>Kg: 28.5</span>
+                <span>Alamat: Kukusan UI</span>
+              </div>
+              <a href="https://wa.me/6281234567890" target="_blank" class="whatsapp-link">WhatsApp</a>
+            </div>
+          </main>
+
+          <nav class="admin-nav">
+            <button class="admin-nav-item active" data-admin="home">Dashboard</button>
+            <button class="admin-nav-item" data-admin="weight">Weight</button>
+            <button class="admin-nav-item" data-admin="orders">Orders</button>
+            <button class="admin-nav-item" data-admin="customers">CRM</button>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
